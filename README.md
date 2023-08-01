@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @vsgangadhara
-- 👀 I’m interested in Python and Java script
-- 🌱 I’m currently learning Java script
-- 💞️ I’m looking to collaborate on Java script
+- 👀 I’m interested in Python and Scala spark.
+- 🌱 I’m currently learning Pyspark and Scala Spark
+- 💞️ I’m looking to collaborate on Pyspark and Scala Spark.
 - 📫 How to reach me :vsgangadhara@gmail.com
 
 <!---
