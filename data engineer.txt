@@ -1,0 +1,48 @@
+2mo • Edited •
+
+Follow
+
+Recent DATA Engineer interview experience.
+Round-1
+Q)How do you handle nulls in data?(df.na.drop() or df.dropna() or use when and otherwise to assign any value:df=df.withColumn("a",when(col("b").isnull(),"M")))
+Q)How to read files recursively in a folder in pyspark?(use recursivelookup option or use *.file_type at folder level)
+Q)When to use partitioning and when to use bucketing?(when partitioning of data creates small file problem then go for bucketing.eg: partition data on age(1-100) will generate 100 small partition files ,instead do bucketing of data in 3 buckets(1-33, 34-67,68-100)).
+Q)Query to generate the 2nd highest salary and to remove dups.
+Q) delta table and the transaction log and its time travel properties were asked.(restore delta table, print older version of delta table etc.)
+Q) optimisation techniques used in project
+Round-2
+Q)Asked about the basic working of various window functions like lead,lag,dense_rank() etc.
+Q)Generate cumulative sum over salary column of a table per department.
+Q) Questions on Dimension tables vs fact tables and about star schema.
+Q)General idea of Implementation of scd-2.(sql code must have 3 columns like the flag, start_date and end_date to denote each record whether active or not and from when till when as per scd-2)
+Q)Count number of occurrences of 'p' in column Fruits as given below.
+Example:
+Fruit
+-------
+apple-------------> 2
+pineapple -------> 3
+(with cte as(select len(fruit) as l1, len(replace('fruit','p','')) as l2 from t)
+select (l1-l2) as p_count from cte)
+Q)0,1,1,2,3,5,8-> write function to return fibbonacci series.(used recursion like : return fibb(n-1)+fibb(n-2))
+Q)Find the customer who missed atleast two due dates using pyspark.
+CusId  Duedate     PaymentDate
+C1 01/01/2019   12/30/2018   
+C1 01/02/2019 01/25/2019   
+C1   01/02/2019    01/24/2019   
+C2 05/01/2019 06/01/2019
+C2 05/02/2019 02/02/2019
+C2 05/03/2019 07/03/2019
+**take it as a challenge to solve and u can provide queries in comments below.
+Round-3
+Q) SQL problem,DDL statements and solution provided in first comment of this post.
+Q)1 situation based question to equally distribute water between 3 people with some conditions.
+Q)reading a csv file without headers and writing it into parquet?
+Q)avro vs parquet vs orc
+Q)Driver vs worker nodes how will they behave when increasing memory/cores aggressively.
+Q)questions on Compression algo working internally for parquet and internal working and serilization and de-serialization of data.
+Q)How did u handles data skewness?
+1.calculate total raw data size:%sh du -sch /dbfs:"source path"
+2.calculate total partitions needed by dividing data size by 128 mb(140 * 1024/128)
+3.to get total existing partitions in source:df.rdd.getnumpartitions()
+4.to check skewness:df.withcolumn("c",spark_partition_id()).groupby("c").count()
+compare step 2 and 3,if total partitions in step-2>step-3 use repartition(as we need to increase the number of existing partitions)else use coalesce()).
