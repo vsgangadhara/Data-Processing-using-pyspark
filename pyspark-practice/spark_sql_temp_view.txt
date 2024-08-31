@@ -1,0 +1,19 @@
+# Import necessary libraries
+from pyspark.sql import SparkSession
+
+# Create SparkSession
+spark = SparkSession.builder \
+                    .appName("Spark SQL Example") \
+                    .getOrCreate()
+
+# Read JSON file into DataFrame
+df = spark.read.json("example.json")
+
+# Register DataFrame as a temporary view
+df.createOrReplaceTempView("people")
+
+# Execute SQL query
+result = spark.sql("SELECT * FROM people WHERE age > 30")
+
+# Show results
+result.show()

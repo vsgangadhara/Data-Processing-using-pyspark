@@ -1,0 +1,17 @@
+# Import necessary libraries
+from pyspark.sql import SparkSession
+
+# Create SparkSession
+spark = SparkSession.builder \
+                   .appName("Spark SQL Example") \
+                   .getOrCreate()
+
+# Read data into DataFrame
+df = spark.read.json("example.json")
+
+# Save DataFrame as a table in the Spark catalog
+df.write.saveAsTable("people", mode="overwrite")
+
+# Now you can query the "people" table using spark.sql()
+result = spark.sql("SELECT * FROM people WHERE age > 30")
+result.show()
